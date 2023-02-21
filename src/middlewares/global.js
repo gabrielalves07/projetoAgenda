@@ -5,9 +5,11 @@ exports.middlewareGlobal = (req, res, next) => {
 }
 
 exports.checkCsrfError = (erro, req, res, next) => {
-    if(erro && erro.code === 'EBADCSRFTOKEN'){
-       return res.send('BAD CSRF'); 
+    if(erro){
+       return res.render('../views/error'); 
     }
+    
+    next();
 }
 
 exports.csrfMiddleware = (req, res, next) => {
