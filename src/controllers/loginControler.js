@@ -21,7 +21,7 @@ exports.register = async function(req, res){
 
         req.flash('success', 'Usuário cadastrado com sucesso');
         req.session.save(function(){
-            return res.redirect('/login/index');
+            return res.redirect('index');
         });
     }catch(erro){
         console.log(erro);
