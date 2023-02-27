@@ -18,6 +18,13 @@ class Contato {
         this.contato = null;
     }
 
+    async edit(id){
+        if(typeof id !== 'string') return;
+        this.valida();
+        if(this.errors.length > 0) return;
+        this.contato = await contatoModel.findByIdAndUpdate(id, this.body, { new: true });
+    }
+
     static async buscaId(id){
         if(typeof id !== 'string') return;
         const user = await contatoModel.findById(id);

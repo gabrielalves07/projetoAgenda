@@ -10,8 +10,13 @@
             <p class="text-center lead">Crie e edite seus contatos</p>
     
             <%- include('./includes/mensagens') %>
-    
+            
+            <% if(contato._id) { %>
+            <form method="post" action="/contato/edit/<%= contato._id %>">
+            <% }else { %>
             <form method="post" action="/contato/register">
+            <% } %> 
+
                 <input type="hidden" name="_csrf" value=<%= csrfToken %>>
                 <div class="form-group">
                   <label for="exampleInputEmail1">Nome</label>
