@@ -5,8 +5,7 @@ exports.index = (req, res) => {
     res.render('contato', {
         contato: {}
     });
-
-}
+};
 
 exports.register = async function(req, res) {
     try{
@@ -24,7 +23,7 @@ exports.register = async function(req, res) {
     }catch(erro){
         res.render('../views/error');
     }
-}
+};
 
 exports.editIndex = async function(req, res) {
     if(!req.params.id) return res.render('error');
@@ -34,7 +33,7 @@ exports.editIndex = async function(req, res) {
     if(!contato) return res.render('error')
 
     res.render('contato', { contato });
-}
+};
 
 exports.edit = async function(req, res){
     try{
@@ -54,5 +53,15 @@ exports.edit = async function(req, res){
         console.log('o erro é aqui, meu nobre');
         res.render('../views/error');
     }
-}
-    
+};
+   
+exports.delete = async function(req, res){
+    if(!req.params.id) return res.render('error');
+
+    const contato = await Contato.delete(req.params.id);
+
+    if(!contato) return res.render('error')
+
+    req.flash('success', 'Contato excluído com sucesso.');
+    req.session.save(() => res.redirect('/'));
+};
