@@ -3,9 +3,16 @@ import 'regenerator-runtime/runtime';
 
 // import './assets/css/style.css';
 
-import Validar from './modules/validarCadastro';
+import ValidarCadastro from './modules/validarCadastro';
+import ValidarContato from './modules/validarContato';
 
-const validarForm = new Validar('.cadastro');
-validarForm.valida();
+const validaCadastro = new ValidarCadastro('.cadastro');
+validaCadastro.init();
+
+const validaLogin = new ValidarCadastro('.login');
+validaLogin.init();
+
+//const validaContato = new ValidarContato('.contato');
+//validaContato.init();
 
 
