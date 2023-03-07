@@ -12,7 +12,7 @@ validaCadastro.init();
 const validaLogin = new ValidarCadastro('.login');
 validaLogin.init();
 
-//const validaContato = new ValidarContato('.contato');
-//validaContato.init();
+const validaContato = new ValidarContato('.contato');
+validaContato.init();
 
 

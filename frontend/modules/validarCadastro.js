@@ -10,10 +10,12 @@ export default class ValidarCadastro{
     }
 
     events(){
-        this.form.addEventListener('submit', e => {
-            e.preventDefault();
-            this.valida(e.target);
-        });  
+        if(this.form !== null){
+            this.form.addEventListener('submit', e => {
+                e.preventDefault();
+                this.valida(e.target);
+            });
+        }  
     }
 
     valida(form){

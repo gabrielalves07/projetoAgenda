@@ -38,10 +38,12 @@ var ValidarCadastro = /*#__PURE__*/function () {
     key: "events",
     value: function events() {
       var _this = this;
-      this.form.addEventListener('submit', function (e) {
-        e.preventDefault();
-        _this.valida(e.target);
-      });
+      if (this.form !== null) {
+        this.form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          _this.valida(e.target);
+        });
+      }
     }
   }, {
     key: "valida",
@@ -104,12 +106,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ ValidarContato)
 /* harmony export */ });
+/* harmony import */ var validator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! validator */ "./node_modules/validator/index.js");
+/* harmony import */ var validator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(validator__WEBPACK_IMPORTED_MODULE_0__);
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
 function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
 function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+
 var ValidarContato = /*#__PURE__*/function () {
   function ValidarContato(query) {
     _classCallCheck(this, ValidarContato);
@@ -124,37 +132,44 @@ var ValidarContato = /*#__PURE__*/function () {
     key: "events",
     value: function events() {
       var _this = this;
-      this.form.addEventListener('submit', function (e) {
-        e.preventDefault();
-        _this.valida(e.target);
-      });
+      if (this.form !== null) {
+        this.form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          _this.valida(e.target);
+        });
+      }
     }
   }, {
     key: "valida",
     value: function valida(form) {
-      /*
-      for(let erro of this.form.querySelectorAll('.div-erro')){
+      var _iterator = _createForOfIteratorHelper(this.form.querySelectorAll('.div-erro')),
+        _step;
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var erro = _step.value;
           erro.remove();
-      } */
-
+        }
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
       var inputNome = form.querySelector('input[name="nome"]');
       var inputSobrenome = form.querySelector('input[name="sobrenome"]');
       var inputEmail = form.querySelector('input[name="email"]');
       var inputTelefone = form.querySelector('input[name="telefone"]');
-      console.log(inputNome, inputSobrenome, inputEmail, inputTelefone);
 
-      /*
       // campos vazios
-      if(!inputNome.value) this.erro(inputNome, `Campo "E-mail" não pode estar vazio.`);
-      if(!inputSobrenome.value) this.erro(inputSobrenome, `Campo "Senha" não pode estar vazio.`);
-        // campo email 
-      if(!validator.isEmail(inputNome.value)) this.erro(inputNome, `E-mail inválido.`);
-        // campo senha
-      if(inputSobrenome.value.length < 3 || inputSobrenome.value.length > 50){
-          this.erro(inputSobrenome, `A senha deve conter entre 3 e 50 caracteres.`);
+      if (!inputNome.value) this.erro(inputNome, "Campo \"Nome\" n\xE3o pode estar vazio.");
+      if (!inputSobrenome.value) this.erro(inputSobrenome, "Campo \"Sobrenome\" n\xE3o pode estar vazio.");
+      if (!inputEmail.value && !inputTelefone.value) {
+        this.erro(inputEmail, "Campo \"E-mail\" ou \"Telefone\" devem ser preenchidos.");
+        this.erro(inputTelefone, "Campo \"E-mail\" ou \"Telefone\" devem ser preenchidos.");
       }
-        if(this.form.querySelectorAll('.div-erro').length < 1 ) form.submit();
-      */
+
+      // campo email 
+      if (!validator__WEBPACK_IMPORTED_MODULE_0___default().isEmail(inputEmail.value)) this.erro(inputEmail, "E-mail inv\xE1lido.");
+      if (this.form.querySelectorAll('.div-erro').length < 1) form.submit();
     }
   }, {
     key: "erro",
@@ -29091,9 +29106,8 @@ var validaCadastro = new _modules_validarCadastro__WEBPACK_IMPORTED_MODULE_2__["
 validaCadastro.init();
 var validaLogin = new _modules_validarCadastro__WEBPACK_IMPORTED_MODULE_2__["default"]('.login');
 validaLogin.init();
-
-//const validaContato = new ValidarContato('.contato');
-//validaContato.init();
+var validaContato = new _modules_validarContato__WEBPACK_IMPORTED_MODULE_3__["default"]('.contato');
+validaContato.init();
 })();
 
 /******/ })()
